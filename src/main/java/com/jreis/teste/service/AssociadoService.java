@@ -27,12 +27,12 @@ public class AssociadoService {
         associadoRepository.save(associado);
     }
 
-//    public void update(Long id, Associado associado) {
-//        Associado associadoOld = findById(id);
-//        associado.setId(associadoOld.getId());
-//
-//        associadoRepository.save(associado);
-//    }
+    public void update(Long id, Associado associado) {
+        Associado associadoOld = findById(id);
+        associado.setId(associadoOld.getId());
+
+        associadoRepository.save(associado);
+    }
 
     public void delete(Long id) {
         if (!associadoRepository.findById(id).isPresent())
