@@ -9,9 +9,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Entity
 @EqualsAndHashCode(callSuper = false)
@@ -19,14 +21,11 @@ import java.util.Set;
 public class Associado extends BaseEntity {
 
     private String nome;
+    private String cpf;
+    private boolean ableToVote;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "associado", cascade = CascadeType.ALL)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Voto> votos;
 
-    public Associado(){};
-
-    public Associado(String joão_reis) {
-        super();
-    }
 }

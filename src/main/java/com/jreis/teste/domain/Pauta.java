@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -23,6 +24,6 @@ public class Pauta extends BaseEntity {
     private int totalVotos;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "pauta", cascade = CascadeType.ALL)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Set<Sessao> sessoes;
 }

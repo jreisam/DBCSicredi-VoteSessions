@@ -35,7 +35,7 @@ public class AssociadoService {
     }
 
     public void delete(Long id) {
-        if (!associadoRepository.findById(id).isPresent())
+//        if (!associadoRepository.findById(id).isPresent())
             associadoRepository.deleteById(id);
     }
 }

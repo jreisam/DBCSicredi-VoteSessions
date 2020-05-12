@@ -8,8 +8,10 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -19,15 +21,16 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = false)
 public class Sessao extends BaseEntity {
 
-    private Time voteTime;
-    private Date sessionDate;
+    private int voteMinutes;
+    private boolean sessionRunning;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date sessionStarted;
+
+
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private Pauta pauta;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "sessao", cascade = CascadeType.ALL)
+    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     private Set<Voto> votos;
 }
