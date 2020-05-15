@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -18,19 +20,26 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = false)
 public class Sessao extends BaseEntity {
 
     private int voteMinutes;
     private boolean sessionRunning;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date sessionStarted;
+    @Column(nullable = false)
+    private LocalDateTime voteStart = getTimeNow();
+
+    @Column(nullable = false)
+    private LocalDateTime voteEnd;
 
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @OneToOne(optional = false)
+    @JoinColumn(referencedColumnName = "id", nullable = false)
     private Pauta pauta;
 
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
-    private Set<Voto> votos;
+    private static LocalDateTime getTimeNow() {
+        final java.time.LocalDateTime localDateTime = LocalDateTime.now();
+        final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy'T'HH:mm");
+        final String formatted = localDateTime.format(dateTimeFormatter);
+        return LocalDateTime.parse(formatted, dateTimeFormatter);
+    }
 }

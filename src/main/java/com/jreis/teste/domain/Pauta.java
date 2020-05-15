@@ -16,14 +16,11 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = false)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pauta extends BaseEntity {
 
+    @Column(nullable = false)
     private String nome;
+
     private int totalVotos;
 
-    @JsonIgnore
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<Sessao> sessoes;
 }

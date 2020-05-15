@@ -14,16 +14,22 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = false)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Voto extends BaseEntity {
 
-    private boolean Voto;
+    @Column(nullable = false)
+    private boolean voto;
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Associado.class)
+    @Column(nullable = false)
+    private int status = 0;
+
+    private String errorMsg;
+
+    @ManyToOne(optional = false, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+    @JoinColumn(nullable = false)
     private Associado associado;
 
-    @OneToOne(fetch = FetchType.LAZY, targetEntity = Sessao.class)
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false)
     private Sessao sessao;
 
 }

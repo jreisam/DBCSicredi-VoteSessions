@@ -12,20 +12,19 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = false)
-@JsonIgnoreProperties(ignoreUnknown = true)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Associado extends BaseEntity {
 
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private String cpf;
+
     private boolean ableToVote;
 
-    @JsonIgnore
-    @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<Voto> votos;
 
 }
