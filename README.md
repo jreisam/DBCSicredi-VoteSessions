@@ -8,7 +8,7 @@ Projeto teste para DBC / Sicredi: Implementação de uma solução que disponibi
 
 3 - Rodar build: "`mvn package`" e então "`java -jar .\DBCjreis\target\DBCjreis-0.0.1-SNAPSHOT.jar`.
 
-4 - Visualizar Endpoints: `http://localhost:8080/swagger-ui.html#/`
+4 - Visualizar Endpoints: `http://localhost:8080/swagger-ui.html#/` ou https://votesessions-sicredi.herokuapp.com/app/swagger-ui.html#/
 
 5 - caso haja erro ao buildar, tente `yarn add webpack --dev` para atualizar o packager.
 
