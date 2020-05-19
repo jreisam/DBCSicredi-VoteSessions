@@ -2,7 +2,7 @@
 Projeto teste para DBC / Sicredi: Implementação de uma solução que disponibiliza sessões de votação de pautas, para associados, com delimitação de tempo, persistência e controle destas sessões.
         
 1 - Certifique-se de primeiro ter instalado e configurado as tecnologias:
-    Java / JDK, Maven, Maven-Wrapper, Lombok (Plugin).
+    Java, Maven, Maven-Wrapper, Lombok (Plugin).
 
 2 - Rodar Dev: "`mvn -N io.takari:maven:0.7.7:wrapper` e então `mvnw clean spring-boot:run`. 
 
