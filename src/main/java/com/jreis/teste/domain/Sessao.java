@@ -1,20 +1,15 @@
 package com.jreis.teste.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jreis.teste.domain.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.Max;
-import java.sql.Time;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,20 +21,15 @@ public class Sessao extends BaseEntity {
     private boolean sessionRunning;
 
     @Column(nullable = false)
-    private LocalDateTime voteStart = getTimeNow();
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy'T'HH:mm")
+    private LocalDateTime voteStart = LocalDateTime.now();
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy'T'HH:mm")
     @Column(nullable = false)
     private LocalDateTime voteEnd;
 
 
     @OneToOne(optional = false)
-    @JoinColumn(referencedColumnName = "id", nullable = false)
     private Pauta pauta;
-
-    private static LocalDateTime getTimeNow() {
-        final java.time.LocalDateTime localDateTime = LocalDateTime.now();
-        final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy'T'HH:mm");
-        final String formatted = localDateTime.format(dateTimeFormatter);
-        return LocalDateTime.parse(formatted, dateTimeFormatter);
-    }
 }

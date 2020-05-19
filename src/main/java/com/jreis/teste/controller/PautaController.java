@@ -1,9 +1,6 @@
 package com.jreis.teste.controller;
 
-import com.jreis.teste.domain.Associado;
 import com.jreis.teste.domain.Pauta;
-import com.jreis.teste.repository.PautaRepository;
-import com.jreis.teste.service.AssociadoService;
 import com.jreis.teste.service.PautaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/pauta"})
+@RequestMapping({"/pautas"})
 @Slf4j
 public class PautaController {
 
@@ -38,7 +35,7 @@ public class PautaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> save(@PathVariable("Id") Long id, @Valid @RequestBody Pauta pauta) {
+    public ResponseEntity<Void> save(@PathVariable Long id, @Valid @RequestBody Pauta pauta) {
         pautaService.update(id, pauta);
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -46,7 +43,7 @@ public class PautaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         pautaService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

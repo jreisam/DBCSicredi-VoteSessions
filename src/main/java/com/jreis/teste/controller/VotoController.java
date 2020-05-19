@@ -1,8 +1,6 @@
 package com.jreis.teste.controller;
 
-import com.jreis.teste.domain.Pauta;
 import com.jreis.teste.domain.Voto;
-import com.jreis.teste.service.PautaService;
 import com.jreis.teste.service.VotoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/voto"})
+@RequestMapping({"/votos"})
 @Slf4j
 public class VotoController {
 
@@ -37,7 +35,7 @@ public class VotoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> save(@PathVariable("Id") Long id, @Valid @RequestBody Voto voto) {
+    public ResponseEntity<Void> save(@PathVariable Long id, @Valid @RequestBody Voto voto) {
         votoService.update(id, voto);
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -45,7 +43,7 @@ public class VotoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         votoService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

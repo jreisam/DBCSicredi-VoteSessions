@@ -3,9 +3,7 @@ package com.jreis.teste.controller;
 import com.jreis.teste.domain.Message;
 import com.jreis.teste.domain.MessageSessionInfo;
 import com.jreis.teste.domain.Sessao;
-import com.jreis.teste.domain.Voto;
 import com.jreis.teste.service.SessaoService;
-import com.jreis.teste.service.VotoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +16,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/sessao"})
+@RequestMapping({"/sessaos"})
 @Slf4j
 public class SessaoController {
 
@@ -42,7 +40,7 @@ public class SessaoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> save(@PathVariable("Id") Long id, @Valid @RequestBody Sessao sessao) {
+    public ResponseEntity<Void> save(@PathVariable Long id, @Valid @RequestBody Sessao sessao) {
         sessaoService.update(id, sessao);
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -50,7 +48,7 @@ public class SessaoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         sessaoService.delete(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
