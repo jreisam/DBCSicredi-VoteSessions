@@ -17,6 +17,8 @@ Tecnologias usadas:
 * SpringBoot / JPA / Swagger
 * Powermock
 
+Controle de versionamento feito em Branch 'dev'.
+
  Implementações realizadas: CRUD, Mensageiro (socket.io) e check CPF via API web (ABLE_TO_VOTE).\
   (OBS: Não me foi possível continuar com a execução do teste e o resto das features, portanto não há muita implementação infelizmente. Fiquei impossibilitado devido à grande demanda dos atuais projetos os quais faço parte e trabalho no momento. Espero numa próxima oportunidade estar com um devido tempo necessário. Obrigado DBC/Sicredi.)
  
