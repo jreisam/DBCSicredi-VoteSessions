@@ -1,11 +1,8 @@
 package com.jreis.teste.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jreis.teste.domain.base.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -25,11 +22,9 @@ public class Voto extends BaseEntity {
     private String errorMsg;
 
     @ManyToOne(optional = false, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
-    @JoinColumn(nullable = false)
     private Associado associado;
 
     @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
     private Sessao sessao;
 
 }

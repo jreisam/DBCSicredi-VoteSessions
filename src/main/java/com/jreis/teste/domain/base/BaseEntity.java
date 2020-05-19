@@ -12,7 +12,7 @@ public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    protected long id;
 
 /*  Auditoria
 

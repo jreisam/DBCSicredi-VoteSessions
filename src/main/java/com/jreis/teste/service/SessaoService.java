@@ -1,9 +1,7 @@
 package com.jreis.teste.service;
 
 import com.jreis.teste.domain.Sessao;
-import com.jreis.teste.domain.Voto;
 import com.jreis.teste.repository.SessaoRepository;
-import com.jreis.teste.repository.VotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
@@ -39,5 +37,7 @@ public class SessaoService {
     public void delete(Long id) {
         if (!sessaoRepository.findById(id).isPresent())
             sessaoRepository.deleteById(id);
+        else
+            throw new ResourceNotFoundException("Sessão não encontrada para o id: " + id);
     }
 }

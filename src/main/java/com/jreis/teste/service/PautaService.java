@@ -1,8 +1,6 @@
 package com.jreis.teste.service;
 
-import com.jreis.teste.domain.Associado;
 import com.jreis.teste.domain.Pauta;
-import com.jreis.teste.repository.AssociadoRepository;
 import com.jreis.teste.repository.PautaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -39,5 +37,7 @@ public class PautaService {
     public void delete(Long id) {
         if (!pautaRepository.findById(id).isPresent())
             pautaRepository.deleteById(id);
+        else
+            throw new ResourceNotFoundException("Pauta não encontrada para o id: " + id);
     }
 }

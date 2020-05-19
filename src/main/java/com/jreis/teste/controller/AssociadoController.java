@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import com.jreis.teste.domain.Associado;
 import com.jreis.teste.service.AssociadoService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,18 +15,16 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping({"/associado"})
+@RequestMapping({"/associados"})
 @Slf4j
 public class AssociadoController {
 
     @Autowired
     private AssociadoService associadoService;
 
-    private Logger logger = LoggerFactory.getLogger(AssociadoController.class);
-
     @GetMapping
     public ResponseEntity<List<Associado>> findAll() {
-        logger.info("GET all Associados");
+        log.info("GET all Associados");
         List<Associado> response = associadoService.findAll();
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
@@ -45,7 +41,7 @@ public class AssociadoController {
 
             associadoService.save(associado);
 
-        logger.info("SAVE Associado");
+        log.info("SAVE Associado");
         return ResponseEntity.status(HttpStatus.CREATED)
                 .build();
     }
@@ -53,7 +49,7 @@ public class AssociadoController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> save(@PathVariable("Id") Long id, @Valid @RequestBody Associado associado) {
         associadoService.update(id, associado);
-        logger.info("UPDATE Associado");
+        log.info("UPDATE Associado");
         return ResponseEntity.status(HttpStatus.CREATED)
                 .build();
     }
@@ -61,7 +57,7 @@ public class AssociadoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable long id) {
         associadoService.delete(id);
-        logger.info("DELETE Associado");
+        log.info("DELETE Associado");
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

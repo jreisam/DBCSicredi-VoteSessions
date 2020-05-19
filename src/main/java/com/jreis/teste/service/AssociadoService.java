@@ -37,5 +37,7 @@ public class AssociadoService {
     public void delete(Long id) {
         if (!associadoRepository.findById(id).isPresent())
             associadoRepository.deleteById(id);
+        else
+            throw new ResourceNotFoundException("Associado não encontrado para o id: " + id);
     }
 }
